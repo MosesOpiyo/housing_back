@@ -13,7 +13,7 @@ def registration_view(request):
     data = {}
     if serializer.is_valid():
         account = serializer.save()
-        data['response'] = f"Successfully created a new user under {account.username}"
+        data['response'] = f"Congratulations {account.username}, you have been successfully registered"
         return Response(data,status = status.HTTP_201_CREATED)
     else:
         data = serializer.errors
