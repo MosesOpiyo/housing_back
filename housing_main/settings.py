@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'housing_users.apps.HousingUsersConfig',
+    'housing_operations.apps.HousingOperationsConfig',
 ]
 
 MIDDLEWARE = [
