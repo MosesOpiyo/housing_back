@@ -27,3 +27,15 @@ def post_new_house(request):
    if account.is_landlord == False:
         data['response'] = 'These measures are only allowed to landlords.'
         return Response(data,status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['GET'])
+def get_houses(request):
+    data = {}
+    houses = House.objects.all()
+    data['houses'] = HouseSerializer(houses,many=True).data
+    print(houses)
+
+    return Response(data,status.HTTP_200_OK)
+
+     
+

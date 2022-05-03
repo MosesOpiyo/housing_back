@@ -8,10 +8,11 @@ class HouseSerializer(serializers.Serializer):
     class Meta:
         model = House
         fields = '__all__'
+        read_only_fields = ['landlord']
 
     def save(self,request):
-        house = House(name=self.validated_data['name'],
-        address=self.validated_data['address'],
+        house = House(
+        house_name=self.validated_data['house_name'],
         house_category=self.validated_data['house_category'],
         number_of_bedrooms=self.validated_data['number_of_bedrooms'],
         apartments_spaces=self.validated_data['apartments_spaces'],
@@ -25,4 +26,3 @@ class HouseSerializer(serializers.Serializer):
         landlord=request.user
         )
         house.save()
-        return house 
