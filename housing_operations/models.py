@@ -17,12 +17,12 @@ class House(models.Model):
     kitchen_image = models.ImageField(null=True)
     sanitaryroom_image = models.ImageField(null=True)
     bathroom_image = models.ImageField(null=True)
-    bedroom = models.ImageField(null=True)
+    bedroom_image = models.ImageField(null=True)
     landlord = models.ForeignKey(Account,on_delete=CASCADE,null=True)
 
-class User(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(Account,on_delete=CASCADE),
-    house = models.ForeignKey(House,on_delete=SET_NULL),
+    house = models.ForeignKey(House,on_delete=SET_NULL,null=True),
     address = models.TextField(null=True)
 
     def __str__(self):
@@ -31,7 +31,7 @@ class User(models.Model):
     @receiver(post_save, sender=Account)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
-            User.objects.create(user=instance)
+            Profile.objects.create(user=instance)
 
     @receiver(post_save, sender=Account)
     def save_user_profile(sender, instance, **kwargs):
